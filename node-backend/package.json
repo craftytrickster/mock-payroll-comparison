@@ -1,0 +1,19 @@
+{
+  "name": "node-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craftytrickster/number-adding.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/craftytrickster/number-adding/issues"
+  },
+  "homepage": "https://github.com/craftytrickster/number-adding#readme"
+}

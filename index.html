@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Submissions</title>
+</head>
+<body>
+    <h1>Accounts Payable Submission</h1>
+    <hr />
+
+    <div>
+        <h2>Account Name</h2>
+        <input id="name" placeholder="Enter name here" />
+    </div>
+    <hr />
+
+    <div>
+        <h3>Quarter 1</h3>
+        <input id="q1" type="number" value="0" />
+    </div>
+
+    <div>
+        <h3>Quarter 2</h3>
+        <input id="q2" type="number" value="0" />
+    </div>
+
+    <div>
+        <h3>Quarter 3</h3>
+        <input id="q3" type="number" value="0" />
+    </div>
+
+    <div>
+        <h3>Quarter 4</h3>
+        <input id="q4" type="number" value="0" />
+    </div>
+    <hr />
+
+    <button id="submit-payment">Submit Payment</button>
+</body>
+
+<script>
+  function getSubmitInfo() {
+    const name = document.querySelector('#name').value;
+    const q1 = document.querySelector('#q1').value;
+    const q2 = document.querySelector('#q2').value;
+    const q3 = document.querySelector('#q3').value;
+    const q4 = document.querySelector('#q4').value;
+
+    return { name, q1: Number(q1), q2: Number(q2), q3: Number(q3), q4: Number(q4) };
+  }
+
+  const button = document.querySelector('#submit-payment');
+  button.addEventListener('click', event => {
+    const paymentInfo = JSON.stringify(getSubmitInfo());
+
+    const paymentRequest = new Request('http://localhost:3000/payment', { method: 'POST', body: paymentInfo });
+    fetch(paymentRequest)
+      .then(() => { alert('Payment submitted'); } );
+  });
+
+
+
+</script>
+
+</html>
