@@ -8,9 +8,10 @@ use submission::{process_payment, PaymentInfo};
 
 pub fn start() {
     let mut router = Router::new();
-    router.post("/payment", payment_handler, "payment");
     router.get("/", index_handler, "hello_world");
+    router.post("/payment", payment_handler, "payment");
 
+    println!("Rust Application Started");
     Iron::new(router).http("localhost:3000").unwrap();
 }
 

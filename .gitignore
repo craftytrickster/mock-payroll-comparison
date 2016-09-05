@@ -6,5 +6,6 @@ rust-backend/target/
 # More information here http://doc.crates.io/guide.html#cargotoml-vs-cargolock
 rust-backend/Cargo.lock
 
+node-backend/node_modules/
 
 .idea

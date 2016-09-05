@@ -53,7 +53,9 @@
   button.addEventListener('click', event => {
     const paymentInfo = JSON.stringify(getSubmitInfo());
 
-    const paymentRequest = new Request('http://localhost:3000/payment', { method: 'POST', body: paymentInfo });
+    const headers = { 'Content-type': 'application/json' };
+
+    const paymentRequest = new Request('http://localhost:3010/payment', { method: 'POST', body: paymentInfo, headers });
     fetch(paymentRequest)
       .then(() => { alert('Payment submitted'); } );
   });

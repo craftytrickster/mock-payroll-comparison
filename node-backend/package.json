@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "test": "node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/craftytrickster/number-adding/issues"
   },
-  "homepage": "https://github.com/craftytrickster/number-adding#readme"
+  "homepage": "https://github.com/craftytrickster/number-adding#readme",
+  "devDependencies": {
+    "expect.js": "0.3.1",
+    "mocha": "3.0.2"
+  },
+  "dependencies": {
+    "body-parser": "1.15.2",
+    "cors": "2.8.0",
+    "express": "4.14.0"
+  }
 }
