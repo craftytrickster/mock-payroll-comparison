@@ -46,7 +46,7 @@
     const q3 = document.querySelector('#q3').value;
     const q4 = document.querySelector('#q4').value;
 
-    return { name, q1: Number(q1), q2: Number(q2), q3: Number(q3), q4: Number(q4) };
+    return { name, q1, q2, q3, q4 };
   }
 
   const button = document.querySelector('#submit-payment');
@@ -57,7 +57,10 @@
 
     const paymentRequest = new Request('http://localhost:3010/payment', { method: 'POST', body: paymentInfo, headers });
     fetch(paymentRequest)
-      .then(() => { alert('Payment submitted'); } );
+      .then(response => response.text())
+      .then(text => {
+        alert('Payment submitted:\n' + text);
+      });
   });
 
 

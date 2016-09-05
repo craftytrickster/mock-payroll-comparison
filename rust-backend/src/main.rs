@@ -3,6 +3,7 @@
 
 extern crate iron;
 extern crate router;
+extern crate iron_cors;
 
 extern crate serde;
 extern crate serde_json;

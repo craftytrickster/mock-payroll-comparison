@@ -2,7 +2,11 @@
 
 function processPayment(payment) {
     const total = calculateTotal(payment);
-    console.log(`${total} USD has been successfully wired to ${payment.name}`);
+    const message = `${total} USD has been successfully wired to ${payment.name}`;
+
+    console.log(message); // <- actual transfer occurs here
+
+    return message;
 }
 
 function calculateTotal(payment) {

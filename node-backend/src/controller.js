@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/', indexHandler);
-app.post('/payment', paymentHandler)
+app.post('/payment', paymentHandler);
 
 app.listen(3010, () => {
     console.log('Node Application Started');
@@ -25,9 +25,8 @@ function indexHandler(req, res) {
 function paymentHandler(req, res) {
     console.log('Received payment request');
     const paymentInfo = req.body;
-    console.log(req.body);
 
-    processPayment(paymentInfo);
+    const message = processPayment(paymentInfo);
 
-    res.sendStatus(200);
+    res.status(200).send(message);
 }

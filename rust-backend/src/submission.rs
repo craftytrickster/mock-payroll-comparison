@@ -7,10 +7,13 @@ pub struct PaymentInfo {
     q4: f64
 }
 
-pub fn process_payment(payment: &PaymentInfo) {
+pub fn process_payment(payment: &PaymentInfo) -> String {
     let total = calculate_total(payment);
+    let message = format!("{} USD has been successfully wired to {}.", total, payment.name);
 
-    println!("{} USD has been successfully wired to {}.", total, payment.name);
+    println!("{}", message);  // <- actual transfer occurs here
+
+    message
 }
 
 pub fn calculate_total(payment: &PaymentInfo) -> f64 {

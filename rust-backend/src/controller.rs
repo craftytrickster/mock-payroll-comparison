@@ -1,6 +1,7 @@
 use iron::{Iron, IronResult, Request, Response, status};
-use iron::headers::AccessControlAllowOrigin;
-use iron::modifiers::Header;
+use iron::method::Method;
+use iron::middleware::Chain;
+use iron_cors::CORS;
 use router::Router;
 use serde_json;
 use std::io::Read;
@@ -11,12 +12,17 @@ pub fn start() {
     router.get("/", index_handler, "hello_world");
     router.post("/payment", payment_handler, "payment");
 
+    let cors = CORS::new(vec![(vec![Method::Post], "payment".to_string())]);
+
+    let mut chain = Chain::new(router);
+    chain.link_after(cors);
+
     println!("Rust Application Started");
-    Iron::new(router).http("localhost:3000").unwrap();
+    Iron::new(chain).http("localhost:3000").unwrap();
 }
 
 fn index_handler(_: &mut Request) -> IronResult<Response> {
-    Ok(Response::with((status::Ok, "Rust Payment System Online.")))
+    Ok(Response::with(("Rust Payment System Online.")))
 }
 
 fn payment_handler(req: &mut Request) -> IronResult<Response> {
@@ -26,8 +32,8 @@ fn payment_handler(req: &mut Request) -> IronResult<Response> {
     println!("Received payment request");
     let info: PaymentInfo = serde_json::de::from_slice(&bytes).unwrap();
 
-    process_payment(&info);
+    let message = process_payment(&info);
 
-    Ok(Response::with((status::Ok, Header(AccessControlAllowOrigin::Any))))
+    Ok(Response::with((status::Ok, message)))
 }
 
